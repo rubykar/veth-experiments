@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  loki:
+    build:
+      context: ./loki
+    networks:
+      - asgard
+    volumes:
+      - shared-volume:/usr/share/nginx/html
+    depends_on:
+      - odin
+
+  odin:
+    build:
+      context: ./odin
+    networks:
+      - asgard
+    volumes:
+      - shared-volume:/usr/share/nginx/html
+
+networks:
+  asgard:
+
+volumes:
+  shared-volume:
